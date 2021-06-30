@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login page</title>
+		<link rel="stylesheet" href="styles/login.css" />
+
+	</head>
+	<body>
+		<h2>LOGIN PAGE</h2>
+		<br />
+		<div class="loginbox">
+
+			<!-- Login Form -->
+			<form id="login" method="get" action="">
+				<!-- Username Field -->
+				<label><b>Username </b> </label>
+				<input type="text" name="uname" id="username" placeholder="Username" />
+				<br /><br />
+				<!-- Password Field -->
+				<label><b>Password </b> </label>
+				<input type="Password" name="pass" id="password" placeholder="Password" />
+				<br> <br>
+
+				<!-- Checkmarks for selecting either a user login or admin login -->
+				<!-- Select User -->
+				<label class="container">
+					<input type="radio" checked="checked" name="user" id = "usercheckmark">
+					<span class="checkmark"></span>
+					User
+				</label>
+				<!-- Select Admin -->
+				<label class="container" id = "admincheckmarkcontainer">
+					<input type="radio" name="user" id = "admincheckMark">
+					<span class="checkmark"></span>
+					Admin
+				</label>
+				<br /><br />
+				<!-- Submit button -->
+				<!-- Point onclick method to login() when working with this later -->
+				<input
+					type="button"
+					name="loginbtn"
+					id="loginbtn"
+					value="Sign In"
+					onclick="dummyLogin()"
+				/>
+				<br> <br>
+				<input
+					type="button"
+					name="signupbtn"
+					id="signupbtn"
+					value="Create a new account"
+					onclick="signup()"
+				/>
+				<br><br>
+				<!-- Place where we can throw a login error if we need to-->
+				<div class id="loginerror"></div>
+
+			</form>
+		</div>
+	</body>
+
+	<script src = "scripts/login.js"> </script>
+
+</html>

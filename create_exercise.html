@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Create Exercise</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="styles/create_exercise.css" />
+
+	</head>
+
+	<body>
+		<h4 class = "pageTitle">Create an exercise</h4>
+	
+	<div class = "cform">
+		<ul class = "cul">
+			<li>
+				<br>            
+				<input class = "names" type="text" id="exercisename" name="exercisename" placeholder="Exercise Name" />        
+				<select name="exercisetype" id="exercisetype">
+					<option value="strength">Strength</option>
+					<option value="cardio">Cardio</option>
+					<option value="stretch">Stretch</option>
+				  </select>
+			</li>
+
+			<li>
+				<br>
+				<span class="videolinklabel">Videolink:</span>
+				<input class = "videolink" type="url" id="videolink" name="videolink" placeholder="https://www.youtube.com/">
+			</li>
+
+			<li>
+				<br>
+				<span class="descriptionlabel">Description:</span>
+				<br>
+				<textarea class = "description" id="description" name="description" placeholder="..."></textarea>
+			</li>
+
+			<!-- Submit button -->
+			<li>
+				<br>
+				<button id = "signupbtn" onclick="createExercise()">
+					Submit
+				</button>
+			</li>
+			<br>
+
+		</ul>
+	</div>
+
+	<h4 class = "pageTitle" id = "submitmsg"></h4>
+	
+</body>
+	<script src = "scripts/create_exercise.js"> </script>
+
+</html>
