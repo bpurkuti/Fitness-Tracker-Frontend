@@ -4,18 +4,29 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Reports</title>
+		<title>Routines</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="styles/view_routine.css" />
+		<link rel="stylesheet" href="styles/nav.css" />
+
+
 	</head>
 
 	<body>
-		
+		<nav class = "navbar" id = "navbar"></nav>
 		<h4 class = "pageTitle">View Routines</h4>
 
+		<!-- Routines should be displayed here as list -->
+		<ul class = "routinelist" id = "routinelist"></ul>
+
+		<button id = "addroutinebtn" onclick ="addRoutine()" >ADD ROUTINE</button>
+		<div class= "pageTitle" id = "submitmsg"></div>
 
 	</body>
 
 	<script src="scripts/view_routine.js" ></script>
+	<script src = "scripts/nav.js"> </script>
+
+	
 </html>

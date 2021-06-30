@@ -1,0 +1,31 @@
+.navbar {
+	color: rgba(197, 209, 233, 0.067);
+	background-color: rgb(29, 71, 57);
+	min-height: 40px;
+	border-bottom: 1px solid rgb(39, 29, 28);
+}
+
+#navhome,
+#navlogout {
+	color: #5518ab;
+	text-decoration: none;
+	background-color: antiquewhite;
+	margin-top: 5px;
+	display: inline-block;
+	padding: 6px 16px;
+	border-radius: 1000px;
+	color: #48749a;
+	white-space: nowrap;
+}
+#navhome {
+	float: left;
+}
+#navlogout {
+	float: right;
+}
+
+#navhome:hover,
+#navlogout:hover {
+	color: #2857bd;
+	background-color: rgb(209, 169, 116);
+}
