@@ -27,3 +27,7 @@ body {
 	/* Form outline */
 	padding: 1em;
 }
+
+.hide {
+	display: none;
+}
