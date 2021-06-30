@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Create Routine</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="#">
+		<link rel="stylesheet" href="styles/nav.css" />
+		<link rel="stylesheet" href="styles/create_exercise.css" />
+
+	</head>
+
+	<body>
+		<nav class = "navbar" id = "navbar"></nav>
+		<h4 class = "pageTitle">Add a routine</h4>
+	
+	<div class = "cform">
+		<ul class = "cul">
+			<li>
+				<br>            
+				<input class = "names" type="text" id="routinename" name="routinename" placeholder="Routine Name" />       
+				<br><br>	
+				<!-- Search bar/Dropdown  -->
+					<input list="searchexcercise" id="inputexcercise" placeholder="Search">
+					<datalist id="searchexcercise">
+					</datalist> 
+					<!-- Should add the excercise to list then clear the search above -->
+					<button id = "addexcercisebtn" onclick="addExcerciseToList()">Add</button>
+				<br><br>
+				<!-- Display Added Excercises -->
+				<div id = "addedexcerciselist">Add some excercises</div>
+			</li>
+
+			<li>
+				<br>
+				<span class="descriptionlabel">Description:</span>
+				<br>
+				<textarea class = "description" id="description" name="description" placeholder="Excercise Description" rows="4" cols="30"></textarea>
+
+			</li>
+
+			<!-- Submit button -->
+			<li>
+				<br>
+				<button id = "submitbtn" onclick="createRoutine()">
+					Create Routine
+				</button>
+			</li>
+			<br>
+
+		</ul>
+	</div>
+
+	<h4 class = "pagetitle" id = "submitmsg"></h4>
+	
+</body>
+	<script src = "scripts/create_routine.js"> </script>
+	<script src = "scripts/nav.js"> </script>
+
+
+</html>

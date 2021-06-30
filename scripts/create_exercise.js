@@ -2,7 +2,7 @@ const exercisename = document.getElementById("exercisename");
 const exercisetype = document.getElementById("exercisetype");
 const videolink = document.getElementById("videolink");
 const description = document.getElementById("description");
-const signupbtn = document.getElementById("signupbtn");
+const submitbtn = document.getElementById("submitbtn");
 const submitmsg = document.getElementById("submitmsg");
 
 function createExercise() {
