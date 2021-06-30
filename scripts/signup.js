@@ -44,3 +44,16 @@ function signup() {
 		console.log("Password Don't Match");
 	}
 }
+
+// Hides and unhidies custom gender option depending on if the checkmark is checked
+function showCustom() {
+	if (male.checked || female.checked) {
+		customgender.classList.add("hide");
+	}
+
+	if (custom.checked) {
+		customgender.classList.remove("hide");
+	}
+
+	console.log(customgender.classList);
+}

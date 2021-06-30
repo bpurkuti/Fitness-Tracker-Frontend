@@ -50,18 +50,18 @@
                     <!-- Radios for gender -->
                     <label class = "genderRadio " for="name">Gender</label>
                     <label class = "gender">
-                        <input type="radio" name="gender" id = "female" value="female">
+                        <input type="radio" name="gender" id = "female" value="female" onclick="showCustom()">
                         <span class="checkmark"></span>
                         Female
                     </label>
                     <label class = "gender">
-                        <input type="radio" name="gender" id = "male" value="male">
+                        <input type="radio" name="gender" id = "male" value="male" onclick="showCustom()">
                         Male
                     </label>
                     <label class = "gender">
-                        <input type="radio" name="gender" id = "custom"  value="custom">
+                        <input type="radio" name="gender" id = "custom"  value="custom" onclick="showCustom()"> 
                         Custom
-                        <input type="text" id = "customgender" placeholder = "Gender (Optional)">
+                        <input class= "hide" type="text" id = "customgender" placeholder = "Gender (Optional)">
                     </label>
                 </li>
                 <!-- Signup button -->
