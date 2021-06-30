@@ -5,9 +5,7 @@ body {
 .pagetitle {
 	color: rgb(87, 207, 57);
 	text-align: center;
-	margin: 0 auto;
-	width: 500px;
-	/* Form outline */
+	margin: auto;
 	padding: 1em;
 }
 
@@ -15,14 +13,33 @@ body {
 	height: 40px;
 	width: 120px;
 	border: none;
-	border-radius: 17px;
+	border-radius: 10px;
 	padding-left: 7px;
 	color: white;
 	background-color: rgb(116, 100, 209);
 	font-size: 15px;
+	/* centering the button */
+	text-align: center;
+	margin-top: 20px;
+	margin: 0 auto;
+	display: block;
 }
 
 #addroutinebtn:hover {
 	color: rgb(211, 197, 197);
 	background-color: rgb(36, 21, 121);
+}
+
+.rbtn {
+	color: rgb(211, 197, 197);
+	margin: auto;
+	border-radius: 2px;
+	height: 30px;
+	width: 120px;
+	margin-bottom: 20px;
+	background-color: rgb(148, 34, 34);
+	display: block;
+}
+.rbtn:hover {
+	background-color: rgb(88, 32, 32);
 }
