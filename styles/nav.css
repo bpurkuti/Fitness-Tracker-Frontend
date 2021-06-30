@@ -1,0 +1,29 @@
+.navbar {
+	color: rgba(197, 209, 233, 0.067);
+	background-color: aquamarine;
+}
+
+#navhome,
+#navlogout {
+	color: #5518ab;
+	text-decoration: none;
+	background-color: antiquewhite;
+	margin: auto;
+	display: inline-block;
+	padding: 6px 16px;
+	border-radius: 1000px;
+	color: #48749a;
+	white-space: nowrap;
+}
+#navhome {
+	float: left;
+}
+#navlogout {
+	float: right;
+}
+
+#navhome:hover,
+#navlogout:hover {
+	color: #2857bd;
+	background-color: rgb(209, 169, 116);
+}
