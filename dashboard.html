@@ -4,10 +4,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Routines</title>
+		<title>Dashboard</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="styles/view_routine.css" />
+		<link rel="shortcut icon" href="#">
+		<link rel="stylesheet" href="styles/dashboard.css" />
 		<link rel="stylesheet" href="styles/nav.css" />
 
 
@@ -15,17 +16,17 @@
 
 	<body>
 		<nav class = "navbar" id = "navbar"></nav>
-		<h4 class = "pageTitle">View Routines</h4>
+		<h4 class = "pagetitle" id = "pagetitle"></h4>
 
 		<!-- Routines should be displayed here as list -->
 		<ul class = "routinelist" id = "routinelist"></ul>
 
-		<button id = "addroutinebtn" onclick ="addRoutine()" >ADD ROUTINE</button>
-		<div class= "pageTitle" id = "submitmsg"></div>
+		<button id = "addroutinebtn" onclick ="addRoutine()" >&#10010<br>Add Routine</button>
+		<div class= "pagetitle" id = "submitmsg"></div>
 
 	</body>
 
-	<script src="scripts/view_routine.js" ></script>
+	<script src="scripts/dashboard.js" ></script>
 	<script src = "scripts/nav.js"> </script>
 
 	

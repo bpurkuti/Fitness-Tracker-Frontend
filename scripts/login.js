@@ -19,7 +19,7 @@ function dummyLogin() {
 	if (userStatus === "Admin") {
 		window.location.assign("create_exercise.html");
 	} else {
-		window.location.assign("view_routine.html");
+		window.location.assign("dashboard.html");
 	}
 }
 
