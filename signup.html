@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Signup</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="styles/signup.css" />
+
+
+
+	</head>
+
+	<body>
+			<h4 class = "pageTitle">Create an account</h4>
+		
+		<div class = "cform">
+			<ul class = "cul">
+                <li>
+                    <br>            
+                    <input class = "names" type="text" id="firstname" name="firstname" placeholder="First name" />        
+			        <input class = "names" type="text" id="lastname" name="lastname" placeholder="Last name"/>
+                </li>
+
+                <li>
+                    <br>
+                    <input class = "cinput" type="text" id="username" name="username" placeholder="Username" />
+                </li>
+
+                <li>
+                    <br>
+                    <input class = "cinput" type="password" id="password" name="password" placeholder="Password" />
+                </li>
+
+                <li>
+                    <br>
+                    <input class = "cinput" type="password" id="confirmpassword" name="password" placeholder="Confirm Password" />
+                </li>
+
+                <li class = "userinfo">
+                    <br>
+                    <input class = "cinput" type="number" id="height" name="height" placeholder="Height"/>
+                    <input class = "cinput" type="number" id="weight" name="weight" placeholder="Weight"/>
+                    <input class = "cinput" type="number" id="age" name="age" placeholder="Age"/>
+                </li>
+
+                <li>
+                    <br>
+                    <!-- Radios for gender -->
+                    <label class = "genderRadio " for="name">Gender</label>
+                    <label class = "gender">
+                        <input type="radio" checked="checked" name="gender" id = "female">
+                        <span class="checkmark"></span>
+                        Female
+                    </label>
+                    <label class = "gender">
+                        <input type="radio" name="gender" id = "male">
+                        Male
+                    </label>
+                    <label class = "gender">
+                        <input type="radio" name="gender" id = "custom">
+                        Custom
+                        <input type="text" id = "customgender">
+                    </label>
+                </li>
+                <!-- Signup button -->
+                <li>
+                    <br>
+                    <button id = "signupbtn" onclick="signup()">
+                        Submit
+                    </button>
+                </li>
+                <br>
+
+            </ul>
+		</div>
+
+		<h4 class = "pageTitle" id = "submitMsg"></h4>
+		
+	</body>
+
+    <script src = "scripts/signup.js"> </script>
+
+</html>

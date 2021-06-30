@@ -28,21 +28,22 @@ label {
 	display: inline-block;
 }
 
-#uname {
+#username {
 	width: 300px;
 	height: 30px;
 	border: none;
 	border-radius: 3px;
 	padding-left: 8px;
 }
-#pass {
+#password {
 	width: 300px;
 	height: 30px;
 	border: none;
 	border-radius: 3px;
 	padding-left: 8px;
 }
-#loginBtn {
+#loginbtn,
+#signupbtn {
 	width: 308px;
 	height: 30px;
 	border: none;
@@ -51,24 +52,24 @@ label {
 	color: white;
 	background-color: rgb(116, 100, 209);
 }
-#loginBtn:hover {
+#loginbtn:hover,
+#signupbtn:hover {
 	background-color: rgb(24, 7, 63);
 }
 
-#loginsubmit,
-#loginError {
+#loginerror {
 	color: rgb(134, 20, 20);
-	align-items: center;
+	text-align: center;
 }
 span {
 	color: white;
 	font-size: 17px;
 }
 
-#userCheckMark {
+#usercheckmark {
 	float: left;
 }
 
-#adminCheckMarkContainer {
+#admincheckmarkcontainer {
 	float: right;
 }

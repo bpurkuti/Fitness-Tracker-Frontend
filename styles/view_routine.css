@@ -1,0 +1,12 @@
+body {
+	background-color: black;
+}
+
+.pageTitle {
+	color: rgb(87, 207, 57);
+	text-align: center;
+	margin: 0 auto;
+	width: 500px;
+	/* Form outline */
+	padding: 1em;
+}
