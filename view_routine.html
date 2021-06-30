@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>View/Start Exercise</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="#">
+		<link rel="stylesheet" href="styles/view_routine.css" />
+        <link rel="stylesheet" href="styles/nav.css" />
+	</head>
+
+	<body>
+        <nav class = "navbar" id = "navbar"></nav>
+		<h3 class = "pageTitle">View/Start an exercise</h3>
+	
+        <li>
+            <h4 id="routinename" style="color:white"></h4>
+        </li>
+        <li>
+            <button id = "startbtn" onclick="startExercise()">
+                Start Exercise
+            </button>
+        </li>
+    
+    <div class = "cform">
+        <ul class = "cul">
+            <p><b id="prevexercisename">Prev Temp Exercise</b></p>
+            <p><em id="completionstatus" style="color:rgb(139, 236, 139)">Complete</em></p>
+        </ul>
+    </div>
+
+	<div class = "cform">
+		<ul class = "cul">
+            <p><b id="exercisename">Current Temp Exercise</b></p>
+			
+            <li>
+				<br>
+				<span class="descriptionlabel">Description:</span>
+				<br>
+				<textarea class = "description" id="description" name="description" placeholder="Temp Description" rows="4" cols="30"></textarea>
+			</li>
+
+            <li>
+                <br>
+				<span class="videolabel">Video Example:</span>
+				<br>
+                <iframe width="300" height="250" src="https://youtu.be/dQw4w9WgXcQ"></iframe>
+            </li>
+
+            <li>
+                <br>
+				<span class="durationlabel">Duration:</span>
+                <br>
+                <input id="durationinput" placeholder="30 minutes" disabled>
+            </li>
+
+            <li>
+                <br>
+				<span class="weightlabel">Weight:</span>
+                <br>
+                <input id="weightinput" placeholder="N/A" disabled>
+            </li>
+
+			<li>
+                <br>
+				<span class="repslabel">Duration:</span>
+                <br>
+                <input id="repsinput" placeholder="N/A" disabled>
+            </li>
+
+			
+			<br>
+
+		</ul>
+	</div>
+
+    <div class = "cform">
+        <ul class = "cul">
+            <p><b id="nextexercisename">Next Temp Exercise</b></p>
+            <p><em id="completionstatus" style="color:rgb(233, 236, 27)">Upcoming</em></p>
+        </ul>
+    </div>
+
+    <!-- Complete button -->
+			<li>
+				<br>
+				<button id = "completebtn" onclick="completeRoutine()">
+					Complete Exercise
+				</button>
+			</li>
+	
+</body>
+	<script src = "scripts/view_routine.js"> </script>
+    <script src = "scripts/nav.js"> </script>
+</html>
