@@ -26,6 +26,13 @@
 					<input list="searchexcercise" id="inputexcercise" placeholder="Search">
 					<datalist id="searchexcercise">
 					</datalist> 
+					<!-- Sort the list for search bar/dropdown above -->
+					<select id = "filterbytype">
+						<option value = "all">All</option>
+						<option value = "strength">Strength</option>
+						<option value = "cardio">Cardio</option>
+						<option value = "stretch">Stretch</option>
+					</select>
 					<!-- Should add the excercise to list then clear the search above -->
 					<button id = "addexcercisebtn" onclick="addExcerciseToList()">Add</button>
 				<br><br>
