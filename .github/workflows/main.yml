@@ -1,20 +1,20 @@
-name: AWS S3 Sync Action
-# You may pin to the exact commit or the version.
-# uses: awact/s3-action@2f4240b4062539841088be5aaa2e119c400d4a1b
-uses: awact/s3-action@0.1.1
-with:
-# AWS Access Key. [AWS Docs](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html)
-AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+name: Upload Website
 
-# AWS Secret Access Key. [AWS Docs](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html)
-AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+on:
+  push:
+    branches:
+      - main
 
-# The Name of the S3 Bucket.
-AWS_S3_BUCKET: quadsquad
-
-# Region of the S3 Bucket
-AWS_REGION: ${{ secrets.AWS_REGION }}
-
-# Local Directory to Sync/Upload to S3.
-SOURCE_DIR: # optional
-https://github.com/wolfryan97/Project2Web
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete --exclude
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-1" # optional: defaults to us-east-1
