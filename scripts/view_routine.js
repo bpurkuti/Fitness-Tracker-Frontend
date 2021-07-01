@@ -6,8 +6,28 @@ const routine = {
     dateCompleted : 0
 }
 
+const routineExercise = {
+    routineExerciseId : 0,
+    exerciseName : "",
+    routineId : 0,
+    duration : 0,
+    reps : 0,
+    sets : 0,
+    weight : 0
+}
+
 
 function routineName(){
     document.getElementById("routinename").innerHTML = "Test Routine"
 }
 routineName()
+
+async function getRoutine(){
+    //fetch all Routine Exercises for id currRid
+    const response = await fetch(`ROUTE/routines/${sessionStorage.getItem(currRid)}/exercises`)
+    const exercises = await response.json()
+
+    for(let i of exercises){
+
+    }
+}
