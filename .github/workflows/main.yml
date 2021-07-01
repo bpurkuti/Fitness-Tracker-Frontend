@@ -18,3 +18,4 @@ AWS_REGION: ${{ secrets.AWS_REGION }}
 # Local Directory to Sync/Upload to S3.
 SOURCE_DIR: # optional
 https://github.com/wolfryan97/Project2Web
+
