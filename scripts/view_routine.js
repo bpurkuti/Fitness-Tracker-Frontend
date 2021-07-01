@@ -31,3 +31,13 @@ async function getRoutine(){
 
     }
 }
+
+//Will be async to retrieve the vid url. 
+//Will then have to append the link to fit this format:
+//Stackoverflow solution: https://stackoverflow.com/questions/20498831/refused-to-display-in-a-frame-because-it-set-x-frame-options-to-sameorigin
+function video(){
+    url = "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    
+    document.getElementById("video").src = url
+}
+video()
