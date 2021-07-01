@@ -1,27 +1,27 @@
 const nav = document.getElementById("navbar");
-const adminnav = document.getElementById("adminnavbar");
-const signupnav = document.getElementById("signupnavbar");
+const adminNav = document.getElementById("adminnavbar");
+const signUpNav = document.getElementById("signupnavbar");
 
 function loadNavBar() {
 	if (nav) {
 		nav.innerHTML = `
         <div> 
             <a href = "../dashboard.html" id = "navhome" class="here">Home</a>  
-            <a href = "../login.html" id = "navlogout" onclick= "logout()"  >Logout</a>
+            <a href = "../login.html" id = "navlogout" onclick= "logOut()"  >Logout</a>
         </div>
         `;
 	}
 
-	if (adminnav) {
-		adminnav.innerHTML = `
+	if (adminNav) {
+		adminNav.innerHTML = `
         <div> 
-            <a href = "../login.html" id = "navlogout" onclick= "logout()"  >Logout</a>
+            <a href = "../login.html" id = "navlogout" onclick= "logOut()"  >Logout</a>
         </div>
         `;
 	}
 
-	if (signupnav) {
-		signupnav.innerHTML = `
+	if (signUpNav) {
+		signUpNav.innerHTML = `
         <div> 
             <a href = "../login.html" id = "navhome" class="here">Home</a>  
         </div>
@@ -29,7 +29,7 @@ function loadNavBar() {
 	}
 }
 
-function logout() {
+function logOut() {
 	//Write code to handle logout here
 	//Clear credentials and invalidate session
 

@@ -1,6 +1,6 @@
-const submitmsg = document.getElementById("submitmsg");
+const submitMsg = document.getElementById("submitmsg");
 const pageTitle = document.getElementById("pagetitle");
-const routinelist = document.getElementById("routinelist");
+const routineList = document.getElementById("routinelist");
 let routines = "";
 function listRoutines() {
 	//Load All Routines
@@ -8,7 +8,7 @@ function listRoutines() {
 	for (let i = 1; i <= 5; i++) {
 		routines += `<button class = "rbtn" id = "routine${i}" value = ${i} onclick = "viewRoutine(this.value)">Routine${i}</button>`;
 	}
-	routinelist.innerHTML = routines;
+	routineList.innerHTML = routines;
 }
 
 //Update current routineId and view_routine page
@@ -18,9 +18,9 @@ function viewRoutine(rId) {
 }
 
 function welcomeTitle() {
-	const fname = "Wolf";
-	const lname = "Ryan";
-	pageTitle.innerHTML = `Welcome ${fname} ${lname}`;
+	const fName = "Wolf";
+	const lName = "Ryan";
+	pageTitle.innerHTML = `Welcome ${fName} ${lName}`;
 }
 
 function addRoutine() {

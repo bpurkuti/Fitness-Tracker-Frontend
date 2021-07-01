@@ -1,20 +1,20 @@
-const exercisename = document.getElementById("exercisename");
-const exercisetype = document.getElementById("exercisetype");
-const videolink = document.getElementById("videolink");
+const exerciseName = document.getElementById("exercisename");
+const exerciseType = document.getElementById("exercisetype");
+const videoLink = document.getElementById("videolink");
 const description = document.getElementById("description");
-const submitbtn = document.getElementById("submitbtn");
-const submitmsg = document.getElementById("submitmsg");
+const submitBtn = document.getElementById("submitbtn");
+const submitMsg = document.getElementById("submitmsg");
 
 function createExercise() {
 	data = {
-		exerciseName: exercisename.value,
-		exercisetype: exercisetype.value,
-		videolink: videolink.value,
+		exerciseName: exerciseName.value,
+		exerciseType: exerciseType.value,
+		videoLink: videoLink.value,
 		description: description.value,
 	};
 	console.log(data);
-	submitmsg.innerHTML = JSON.stringify(data);
-	exercisename.value = "";
-	videolink.value = "";
+	submitMsg.innerHTML = JSON.stringify(data);
+	exerciseName.value = "";
+	videoLink.value = "";
 	description.value = "";
 }
