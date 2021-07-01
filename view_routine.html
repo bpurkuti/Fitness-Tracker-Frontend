@@ -23,13 +23,15 @@
                 Start Exercise
             </button>
         </li>
-    
-    <div class = "cform">
-        <ul class = "cul">
-            <p><b id="prevexercisename">Prev Temp Exercise</b></p>
-            <p><em id="completionstatus" style="color:rgb(139, 236, 139)">Complete</em></p>
-        </ul>
+    <div id = "displaybefore">
+        <div class = "cform">
+            <ul class = "cul">
+                <p><b id="prevexercisename">Prev Temp Exercise</b></p>
+                <p><em id="completionstatus" style="color:rgb(139, 236, 139)">Complete</em></p>
+            </ul>
+        </div>
     </div>
+    
 
 	<div class = "cform">
 		<ul class = "cul">
@@ -48,40 +50,51 @@
 				<br>
                 <iframe width="300" height="250" src="https://youtu.be/dQw4w9WgXcQ"></iframe>
             </li>
-
-            <li>
-                <br>
-				<span class="durationlabel">Duration:</span>
-                <br>
-                <input id="durationinput" placeholder="30 minutes" disabled>
-            </li>
-
-            <li>
-                <br>
-				<span class="weightlabel">Weight:</span>
-                <br>
-                <input id="weightinput" placeholder="N/A" disabled>
-            </li>
-
-			<li>
-                <br>
-				<span class="repslabel">Duration:</span>
-                <br>
-                <input id="repsinput" placeholder="N/A" disabled>
-            </li>
-
+            
+            <div id="checkexercisetype">
+                <li>
+                    <br>
+                    <span class="durationlabel">Duration:</span>
+                    <br>
+                    <input id="durationinput" placeholder="N/A" disabled>
+                </li>
+    
+                <li>
+                    <br>
+                    <span class="weightlabel">Weight:</span>
+                    <br>
+                    <input id="weightinput" placeholder="N/A" disabled>
+                </li>
+    
+                <li>
+                    <br>
+                    <span class="setslabel">Sets:</span>
+                    <br>
+                    <input id="setsinput" placeholder="N/A" disabled>
+                </li>
+    
+                <li>
+                    <br>
+                    <span class="repslabel">reps:</span>
+                    <br>
+                    <input id="repsinput" placeholder="N/A" disabled>
+                </li>
+            </div>
+            
 			
 			<br>
 
 		</ul>
 	</div>
-
-    <div class = "cform">
-        <ul class = "cul">
-            <p><b id="nextexercisename">Next Temp Exercise</b></p>
-            <p><em id="completionstatus" style="color:rgb(233, 236, 27)">Upcoming</em></p>
-        </ul>
+    <div id = "displayafter">
+        <div class = "cform">
+            <ul class = "cul">
+                <p><b id="nextexercisename">Next Temp Exercise</b></p>
+                <p><em id="completionstatus" style="color:rgb(233, 236, 27)">Upcoming</em></p>
+            </ul>
+        </div>
     </div>
+    
 
     <!-- Complete button -->
 			<li>
