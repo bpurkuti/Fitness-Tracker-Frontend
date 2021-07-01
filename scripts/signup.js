@@ -1,32 +1,32 @@
-const firstname = document.getElementById("firstname");
-const lastname = document.getElementById("lastname");
+const firstName = document.getElementById("firstname");
+const lastName = document.getElementById("lastname");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
-const confirmpassword = document.getElementById("confirmpassword");
+const confirmPassword = document.getElementById("confirmpassword");
 const height = document.getElementById("height");
 const weight = document.getElementById("weight");
 const age = document.getElementById("age");
 const female = document.getElementById("female");
 const male = document.getElementById("male");
 const custom = document.getElementById("custom");
-const customgender = document.getElementById("customgender");
+const customGender = document.getElementById("customgender");
 let genderVal;
-const submitmsg = document.getElementById("submitmsg");
+const submitMsg = document.getElementById("submitmsg");
 
 function signup() {
-	if (password.value === confirmpassword.value) {
+	if (password.value === confirmPassword.value) {
 		if (female.checked) {
 			genderVal = female.value;
 		} else if (male.checked) {
 			genderVal = male.value;
 		} else {
-			genderVal = customgender.value;
+			genderVal = customGender.value;
 		}
 		console.log(genderVal);
 
 		data = {
-			firstName: firstname.value,
-			lastName: lastname.value,
+			firstName: firstName.value,
+			lastName: lastName.value,
 			username: username.value,
 			password: password.value,
 			height: height.value,
@@ -36,11 +36,13 @@ function signup() {
 		};
 
 		console.log(data);
-		submitmsg.innerHTML = JSON.stringify(data);
+		submitMsg.innerHTML = JSON.stringify(data);
+
+		// Redirect to login page when we work with endpoints
 		// window.location.assign("login.html");
 		console.log("Password Match");
 	} else {
-		submitmsg.innerHTML = "Password Don't Match";
+		submitMsg.innerHTML = "Password Don't Match";
 		console.log("Password Don't Match");
 	}
 }
@@ -48,12 +50,12 @@ function signup() {
 // Hides and unhidies custom gender option depending on if the checkmark is checked
 function showCustom() {
 	if (male.checked || female.checked) {
-		customgender.classList.add("hide");
+		customGender.classList.add("hide");
 	}
 
 	if (custom.checked) {
-		customgender.classList.remove("hide");
+		customGender.classList.remove("hide");
 	}
 
-	console.log(customgender.classList);
+	console.log(customGender.classList);
 }
