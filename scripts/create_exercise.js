@@ -20,10 +20,8 @@ async function createExercise() {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(data),
 	};
-	console.log(data);
 
 	const response = await fetch(`${serverUrl}createExercise`, config);
-
 	if (response.status == 201) {
 		submitMsg.innerHTML = `Exercise created successfully`;
 	} else {
@@ -34,3 +32,10 @@ async function createExercise() {
 	videoLink.value = "";
 	description.value = "";
 }
+
+description.addEventListener("keyup", (event) => {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+		submitBtn.click();
+	}
+});
