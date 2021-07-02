@@ -49,4 +49,20 @@ window.onload = function(){
 	signupBtn.addEventListener("click", function(){
 		window.open(`/signup.html`, '_self');
     })
+
+	username.addEventListener("keyup", function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			loginBtn.click();
+		}
+	});
+
+	password.addEventListener("keyup", function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			loginBtn.click();
+		}
+	});
+
+	
 }
