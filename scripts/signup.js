@@ -1,61 +1,41 @@
-const firstName = document.getElementById("firstname");
-const lastName = document.getElementById("lastname");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirmpassword");
-const height = document.getElementById("height");
-const weight = document.getElementById("weight");
-const age = document.getElementById("age");
-const female = document.getElementById("female");
-const male = document.getElementById("male");
-const custom = document.getElementById("custom");
-const customGender = document.getElementById("customgender");
-let genderVal;
-const submitMsg = document.getElementById("submitmsg");
+window.onload = function(){
 
-function signup() {
-	if (password.value === confirmPassword.value) {
-		if (female.checked) {
-			genderVal = female.value;
-		} else if (male.checked) {
-			genderVal = male.value;
-		} else {
-			genderVal = customGender.value;
-		}
-		console.log(genderVal);
+	let serverUrl = "http://localhost:7000";
 
-		data = {
-			firstName: firstName.value,
-			lastName: lastName.value,
-			username: username.value,
-			password: password.value,
-			height: height.value,
-			weight: weight.value,
-			age: age.value,
-			gender: genderVal,
-		};
+	const username = document.getElementById("username");
+	const password = document.getElementById("password");
+	const firstName = document.getElementById("firstname");
+	const lastName = document.getElementById("lastname");
+	const loginBtn = document.getElementById("loginbtn");
+	const signupBtn = document.getElementById("signupbtn");
+	const loginError = document.getElementById("loginerror");
 
-		console.log(data);
-		submitMsg.innerHTML = JSON.stringify(data);
+	signupBtn.addEventListener("click", async function(){
+        let jsonObject = {};
+        jsonObject.username = String(username.value);
+        jsonObject.password = String(password.value);
+		jsonObject.firstName = String(firstName.value);
+		jsonObject.lastName = String(lastName.value);
+        let response = await fetch(`${serverUrl}/createAccount`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonObject)
+        })
+        if (response.status === 201){
+            let jsonReply = await response.json();
+			sessionStorage.setItem('session', jsonReply.session);
+			window.open(`/dashboard.html`, '_self');
+        }
+        else{
+            let error = await response.text();
+            loginError.innerHTML = `${error}`;
+        }
+    })
 
-		// Redirect to login page when we work with endpoints
-		// window.location.assign("login.html");
-		console.log("Password Match");
-	} else {
-		submitMsg.innerHTML = "Password Don't Match";
-		console.log("Password Don't Match");
-	}
-}
-
-// Hides and unhidies custom gender option depending on if the checkmark is checked
-function showCustom() {
-	if (male.checked || female.checked) {
-		customGender.classList.add("hide");
-	}
-
-	if (custom.checked) {
-		customGender.classList.remove("hide");
-	}
-
-	console.log(customGender.classList);
+	loginBtn.addEventListener("click", function(){
+		window.open(`/signup.html`, '_self');
+    })
 }
