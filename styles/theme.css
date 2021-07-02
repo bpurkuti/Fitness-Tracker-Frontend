@@ -31,6 +31,7 @@ body{
 .errorField{
     color: red;
 	text-align: center;
+	white-space: pre-wrap;
 }
 
 .backgroundimg {

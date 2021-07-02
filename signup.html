@@ -2,47 +2,68 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Sign up</title>
-	<meta name="description" content="" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="shortcut icon" href="#">
-	<link rel="stylesheet" href="styles/signup.css" />
-	<link rel="stylesheet" href="styles/theme.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Sign up</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="styles/signup.css" />
+    <link rel="stylesheet" href="styles/theme.css" />
 
 </head>
 
 <body class="backgroundimg">
-	<div class="loginbox">
-		<h2>LOGIN</h2>
-		<br />
-		<form id="login" method="get" action="">
-			<label><b>Username </b> </label>
-			<input type="text" name="uname" id="username" class="inputField" placeholder="Username" />
-			<br /><br />
+    <div class="loginbox">
+        <h2>SIGN UP</h2>
+        <br />
+        <form id="login" method="get" action="">
+            <label><b>Username<b style="color: red">*</b></b> </label>
+            <input type="text" name="uname" id="username" class="inputField" placeholder="Username" />
+            <br /><br />
 
-			<label><b>Password </b> </label>
-			<input type="Password" name="pass" id="password" class="inputField" placeholder="Password" />
-			<br> <br>
+            <label><b>Password<b style="color: red">*</b></b> </label>
+            <input type="password" name="pass" id="password" class="inputField" placeholder="Password" />
+            <br> <br>
 
-            <label><b>First Name </b> </label>
-			<input type="text" name="fname" id="firstname" class="inputField" placeholder="First name" />
-			<br /><br />
+            <label><b>First Name<b style="color: red">*</b></b> </label>
+            <input type="text" name="fname" id="firstname" class="inputField" placeholder="First name" />
+            <br /><br />
 
-			<label><b>Last Name </b> </label>
-			<input type="Password" name="lname" id="lastname" class="inputField" placeholder="Last name" />
-			<br> <br>
+            <label><b>Last Name<b style="color: red">*</b></b> </label>
+            <input type="text" name="lname" id="lastname" class="inputField" placeholder="Last name" />
+            <br> <br>
 
-			<input type="button" name="signupbtn" id="signupbtn" class="submitBtn" value="Create a new account" />
-			<br><br>
+            <div>
+                <label style="display: inline-block; margin-right: 2.5em;"><b>Gender</b></label>
+                <label style="display: inline-block; margin-left: 2.5em;"><b>Age</b></label>
+            </div>
+            <div>
+                <input type="text" name="gender" id="gender" class="inputField" placeholder="Gender" />
+                <input type="number" name="age" id="age" class="inputField" placeholder="Age" />
+            </div>
+
+            <br>
+
+            <div>
+                <label style="display: inline-block; margin-right: 2.5em;"><b>Height</b></label>
+                <label style="display: inline-block; margin-left: 2.5em;"><b>Weight</b></label>
+            </div>
+            <div>
+                <input type="number" name="height" id="height" class="inputField" placeholder="Height (in)" />
+                <input type="number" name="weight" id="weight" class="inputField" placeholder="Weight (lb)" />
+            </div>
+
+            <br> <br>
+            <input type="button" name="signupbtn" id="signupbtn" class="submitBtn" value="Create a new account" />
+            <br><br>
 
             <input type="button" name="loginbtn" id="loginbtn" class="submitBtn" value="Sign In" />
-			<br> <br>
+            <br> <br>
 
-			<div class="errorField" id="loginerror"></div>
-		</form>
-	</div>
+            <div class="errorField" id="loginerror"></div>
+        </form>
+    </div>
 </body>
 
 <script src="scripts/signup.js"> </script>
