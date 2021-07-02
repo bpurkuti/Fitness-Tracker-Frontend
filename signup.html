@@ -1,91 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Signup</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="#">
-		<link rel="stylesheet" href="styles/signup.css" />
-        <link rel="stylesheet" href="styles/nav.css" />
 
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Sign up</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" href="#">
+	<link rel="stylesheet" href="styles/signup.css" />
+	<link rel="stylesheet" href="styles/theme.css" />
 
+</head>
 
+<body class="backgroundimg">
+	<div class="loginbox">
+		<h2>LOGIN</h2>
+		<br />
+		<form id="login" method="get" action="">
+			<label><b>Username </b> </label>
+			<input type="text" name="uname" id="username" class="inputField" placeholder="Username" />
+			<br /><br />
 
-	</head>
+			<label><b>Password </b> </label>
+			<input type="Password" name="pass" id="password" class="inputField" placeholder="Password" />
+			<br> <br>
 
-	<body>
-        <nav class = "navbar" id = "signupnavbar"></nav>
-		<h4 class = "pageTitle">Create an account</h4>
-		
-		<div class = "cform">
-			<ul class = "cul">
-                <li>
-                    <br>            
-                    <input class = "names" type="text" id="firstname" name="firstname" placeholder="First name" />        
-			        <input class = "names" type="text" id="lastname" name="lastname" placeholder="Last name"/>
-                </li>
+            <label><b>First Name </b> </label>
+			<input type="text" name="fname" id="firstname" class="inputField" placeholder="First name" />
+			<br /><br />
 
-                <li>
-                    <br>
-                    <input class = "cinput" type="text" id="username" name="username" placeholder="Username" />
-                </li>
+			<label><b>Last Name </b> </label>
+			<input type="Password" name="lname" id="lastname" class="inputField" placeholder="Last name" />
+			<br> <br>
 
-                <li>
-                    <br>
-                    <input class = "cinput" type="password" id="password" name="password" placeholder="Password" />
-                </li>
+			<input type="button" name="signupbtn" id="signupbtn" class="submitBtn" value="Create a new account" />
+			<br><br>
 
-                <li>
-                    <br>
-                    <input class = "cinput" type="password" id="confirmpassword" name="password" placeholder="Confirm Password" />
-                </li>
+            <input type="button" name="loginbtn" id="loginbtn" class="submitBtn" value="Sign In" />
+			<br> <br>
 
-                <li class = "userinfo">
-                    <br>
-                    <input class = "cinput" type="number" id="height" name="height" placeholder="Height"/>
-                    <input class = "cinput" type="number" id="weight" name="weight" placeholder="Weight"/>
-                    <input class = "cinput" type="number" id="age" name="age" placeholder="Age"/>
-                </li>
+			<div class="errorField" id="loginerror"></div>
+		</form>
+	</div>
+</body>
 
-                <li>
-                    <br>
-                    <!-- Radios for gender -->
-                    <label class = "genderRadio " for="name">Gender</label>
-                    <label class = "gender">
-                        <input type="radio" name="gender" id = "female" value="female" onclick="showCustom()">
-                        <span class="checkmark"></span>
-                        Female
-                    </label>
-                    <label class = "gender">
-                        <input type="radio" name="gender" id = "male" value="male" onclick="showCustom()">
-                        Male
-                    </label>
-                    <label class = "gender">
-                        <input type="radio" name="gender" id = "custom"  value="custom" onclick="showCustom()"> 
-                        Other
-                        <input class= "hide" type="text" id = "customgender" placeholder = "Gender (Optional)">
-                    </label>
-                </li>
-                <!-- Signup button -->
-                <li>
-                    <br>
-                    <button id = "signupbtn" onclick="signup()">
-                        Submit
-                    </button>
-                </li>
-                <br>
-
-            </ul>
-		</div>
-
-		<h4 class = "pageTitle" id = "submitmsg"></h4>
-		
-	</body>
-
-    <script src = "scripts/signup.js"> </script>
-    <script src = "scripts/nav.js"> </script>
-
+<script src="scripts/signup.js"> </script>
 
 </html>
