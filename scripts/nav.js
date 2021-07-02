@@ -30,11 +30,8 @@ function loadNavBar() {
 }
 
 function logOut() {
-	//Write code to handle logout here
-	//Clear credentials and invalidate session
-
-	//Remove this when implementing
 	window.location.assign("login.html");
+	sessionStorage.clear();
 }
 
 loadNavBar();
