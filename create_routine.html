@@ -23,11 +23,12 @@
 				<input class = "names" type="text" id="routinename" name="routinename" placeholder="Routine Name" />       
 				<br><br>	
 				<!-- Search bar/Dropdown  -->
+				<!-- Ensure that value of list attribute in input is same as the id of datalist -->
 					<input list="searchexercise" id="inputexercise" placeholder="Search">
 					<datalist id="searchexercise">
 					</datalist> 
 					<!-- Sort the list for search bar/dropdown above -->
-					<select id = "filterbytype">
+					<select id = "filterdropdown">
 						<option value = "all">All</option>
 						<option value = "strength">Strength</option>
 						<option value = "cardio">Cardio</option>
