@@ -1,61 +1,73 @@
 const routineName = document.getElementById("routinename");
-const inputExcercise = document.getElementById("inputexcercise");
-const searchExcercise = document.getElementById("searchexcercise");
-const addExcerciseBtn = document.getElementById("addexcercisebtn");
-const addedExcerciseList = document.getElementById("addedexcerciselist");
+const inputExcercise = document.getElementById("inputexercise");
+const searchExcercise = document.getElementById("searchexercise");
+const addExcerciseBtn = document.getElementById("addexercisebtn");
+const addedExcerciseList = document.getElementById("addedexerciselist");
 const filterByType = document.getElementById("filterbytype");
 const description = document.getElementById("description");
 const submitBtn = document.getElementById("submitbtn");
 const submitMsg = document.getElementById("submitmsg");
-
-let excerciseOptions;
-const excerciseList = [
-	{ name: "Preacher Curls", type: "strength" },
-	{ name: "Treadmill", type: "cardio" },
-	{ name: "Pullups", type: "strength" },
-	{ name: "calf", type: "stretch" },
-	{ name: "Benchpress", type: "strength" },
-	{ name: "Pushups", type: "strength" },
-	{ name: "Ladder", type: "cardio" },
-	{ name: "Bike", type: "cardio" },
-	{ name: "Leg curls", type: "strength" },
-	{ name: "Leg press", type: "strength" },
-	{ name: "hamstring", type: "stretch" },
-];
+//Initial List from fetch request
+const exerciseList = [];
+//Filtereted exerciseList based on Type
 let filteredExcerciseList = [];
+//Exercises added for the current Routine
 let addedExcercises = [];
+//Html to be added on the searchbar/dropdown
+let exerciseOptions;
+let serverUrl = "http://localhost:7000/";
 
-//Theres some filterning going on here atm. Need to change it up depending on how we store excercises
-function setExcerciseList(filtertype) {
-	excerciseOptions = "";
+//Only called once per page load
+//Calls endpoint GET ALL EXERCISES and puts them into list
+async function setExcerciseList() {
+	const config = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ session: sessionStorage.getItem("session") }),
+	};
+	const response = await fetch(`${serverUrl}getAllExercises`, config);
+	const exercises = await response.json();
 
-	if (filtertype === "strength") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "strength"
+	for (let exercise of exercises) {
+		let r = {
+			exerciseName: exercise["exerciseName"],
+			type: exercise["type"],
+		};
+		exerciseList.push(r);
+	}
+	//Calling to set initial exercises in dropdown
+	filterExercises("all");
+}
+
+function filterExercises(filtertype) {
+	//Filters through all exercises based on type: all, strength, cardio, stretch
+	if (filtertype === "all") {
+		filteredExcerciseList = exerciseList;
+	} else if (filtertype === "strength") {
+		filteredExcerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "strength"
 		);
 	} else if (filtertype === "cardio") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "cardio"
+		filteredExcerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "cardio"
 		);
 	} else if (filtertype === "stretch") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "stretch"
+		filteredExcerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "stretch"
 		);
-	} else {
-		filteredExcerciseList = excerciseList;
 	}
-
+	//Resets the exercises from dropdown list and pushes them with a new filtered list
+	exerciseOptions = "";
 	for (let i = 0; i < filteredExcerciseList.length; i++) {
-		excerciseOptions += `<option value="${filteredExcerciseList[i]["name"]}">`;
+		exerciseOptions += `<option value="${filteredExcerciseList[i]["exerciseName"]}">`;
 	}
-
-	searchExcercise.innerHTML = excerciseOptions;
+	searchExcercise.innerHTML = exerciseOptions;
 }
 
 function createRoutine() {
 	data = {
 		routineName: routineName.value,
-		excercises: addedExcercises,
+		exercises: addedExcercises,
 		description: description.value,
 	};
 
@@ -67,15 +79,15 @@ function createRoutine() {
 function addExcerciseToList() {
 	addedExcercises.push(inputExcercise.value);
 	inputExcercise.value = "";
-	let excercises = "";
+	let exercises = "";
 	for (let i = 0; i < addedExcercises.length; i++) {
-		excercises += `<li>${addedExcercises[i]}</li>`;
+		exercises += `<li>${addedExcercises[i]}</li>`;
 	}
-	addedExcerciseList.innerHTML = excercises;
+	addedExcerciseList.innerHTML = exercises;
 	console.log(addedExcercises);
 }
 
 filterByType.onchange = () => {
-	setExcerciseList(filterByType.value);
+	filterExercises(filterByType.value);
 };
-setExcerciseList(filterByType.value);
+setExcerciseList();
