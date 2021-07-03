@@ -80,11 +80,9 @@ function addExerciseToList() {
 
 		let exercises = "";
 		for (let i = 0; i < addedExercises.length; i++) {
-			console.log(`${addedExercises[i]}exercise`, `${addedExercises[i]}btn`);
 			exercises += `<div id="${addedExercises[i]}exercise" >${addedExercises[i]}<button id="${addedExercises[i]}btn" onclick="remove('${addedExercises[i]}')">Del</button></div>`;
 		}
 		addedExerciseList.innerHTML = exercises;
-		console.log(addedExercises);
 	} else {
 		alert("Choose a valid exercise");
 	}
@@ -97,9 +95,10 @@ function remove(exercise) {
 	document.getElementById(`${exercise}btn`).remove();
 	document.getElementById(`${exercise}exercise`).remove();
 	addedExercises = addedExercises.filter((item) => item !== exercise);
-	console.log(addedExercises);
 }
 
+//Creates Routine when we fill out Routine name and add at least 1 exercise to the list
+//If routine was successfully created, calls another function to create exercise routines
 async function createRoutine() {
 	if (addedExercises.length > 0) {
 		const date = new Date(dateScheduled.value).getTime() / 1000;
@@ -108,7 +107,6 @@ async function createRoutine() {
 			routineName: routineName.value,
 			dateScheduled: date,
 		};
-		console.log(date);
 		const config = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -117,20 +115,47 @@ async function createRoutine() {
 
 		const response = await fetch(`${serverUrl}createRoutine`, config);
 		if (response.status == 201) {
-			submitMsg.innerHTML = `Routine created successfully`;
+			const body = await response.json();
+			sessionStorage.setItem("currRoutineId", body["routineId"]);
+			createExerciseRoutine();
 		} else {
 			let error = await response.text();
 			submitMsg.innerHTML = error;
 		}
-		console.log(data);
 		routineName.value = "";
 	} else {
 		submitMsg.innerHTML = "Add some exercises to your routine first.";
 	}
 }
 
-async function createExerciseRoutine() {}
+//Creating ExcerciseRoutines here
+//Only starts if routine was created first as we need routineId from it
+//Loops through each entry in addedExercises and fetches the endpoint to create individual routineExercises
+async function createExerciseRoutine() {
+	for (let exercise of addedExercises) {
+		const data = {
+			session: sessionStorage.getItem("session"),
+			exerciseName: exercise,
+			routineId: sessionStorage.getItem("currRoutineId"),
+		};
+		const config = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
 
+		const response = await fetch(`${serverUrl}createRoutineExercise`, config);
+		if (response.status == 201) {
+			submitMsg.innerHTML = "Created Routines and its exercises successfully!";
+		} else {
+			submitMsg.innerHTML = "Something went wrong";
+		}
+		//Removing exercise from list and view
+		remove(exercise);
+	}
+}
+
+//Helper function to stripdown date to this format: "7-2-2021". The frontend date selector only takes this format
 Date.prototype.toDateInputValue = function () {
 	var local = new Date(this);
 	local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -141,4 +166,5 @@ Date.prototype.toDateInputValue = function () {
 filterDropDown.onchange = () => {
 	filterExercises(filterDropDown.value);
 };
+//Runs onload to setup page
 setExerciseList();
