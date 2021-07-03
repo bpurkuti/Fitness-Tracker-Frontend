@@ -21,6 +21,8 @@
 			<li>
 				<br>            
 				<input class = "names" type="text" id="routinename" name="routinename" placeholder="Routine Name" />       
+				<label for="datescheduled">Start date:</label>
+				<input type="date" id="datescheduled" value="2021-07-01" min="2021-07-01" max="2022-07-02">
 				<br><br>	
 				<!-- Search bar/Dropdown  -->
 				<!-- Ensure that value of list attribute in input is same as the id of datalist -->
@@ -40,15 +42,6 @@
 				<!-- Display Added Exercises -->
 				<div id = "addedexerciselist">Add some exercises</div>
 			</li>
-
-			<li>
-				<br>
-				<span class="descriptionlabel">Description:</span>
-				<br>
-				<textarea class = "description" id="description" name="description" placeholder="Exercise Description" rows="4" cols="30"></textarea>
-
-			</li>
-
 			<!-- Submit button -->
 			<li>
 				<br>

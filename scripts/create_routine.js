@@ -4,7 +4,7 @@ const searchExercise = document.getElementById("searchexercise");
 const addExerciseBtn = document.getElementById("addexercisebtn");
 const addedExerciseList = document.getElementById("addedexerciselist");
 const filterDropDown = document.getElementById("filterdropdown");
-const description = document.getElementById("description");
+const dateScheduled = document.getElementById("datescheduled");
 const submitBtn = document.getElementById("submitbtn");
 const submitMsg = document.getElementById("submitmsg");
 //Initial List from fetch request
@@ -20,6 +20,10 @@ let serverUrl = "http://localhost:7000/";
 //Only called once per page load
 //Calls endpoint GET ALL EXERCISES and puts them into list
 async function setExerciseList() {
+	//Set the default scheduledDate to current date
+	//Putting it outside of the function was causing issues
+	dateScheduled.value = new Date().toDateInputValue();
+
 	const config = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -64,18 +68,6 @@ function filterExercises(filtertype) {
 	searchExercise.innerHTML = exerciseOptions;
 }
 
-function createRoutine() {
-	data = {
-		routineName: routineName.value,
-		exercises: addedExercises,
-		description: description.value,
-	};
-
-	submitMsg.innerHTML = JSON.stringify(data);
-	routineName.value = "";
-	description.value = "";
-}
-
 //Function allows user to add selected exercise to their list
 //Checks validity of the exercise input by user to the original exercise list
 //Allows users to delete exercise they added if they changed their mind
@@ -107,6 +99,43 @@ function remove(exercise) {
 	addedExercises = addedExercises.filter((item) => item !== exercise);
 	console.log(addedExercises);
 }
+
+async function createRoutine() {
+	if (addedExercises.length > 0) {
+		const date = new Date(dateScheduled.value).getTime() / 1000;
+		const data = {
+			session: sessionStorage.getItem("session"),
+			routineName: routineName.value,
+			dateScheduled: date,
+		};
+		console.log(date);
+		const config = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
+
+		const response = await fetch(`${serverUrl}createRoutine`, config);
+		if (response.status == 201) {
+			submitMsg.innerHTML = `Routine created successfully`;
+		} else {
+			let error = await response.text();
+			submitMsg.innerHTML = error;
+		}
+		console.log(data);
+		routineName.value = "";
+	} else {
+		submitMsg.innerHTML = "Add some exercises to your routine first.";
+	}
+}
+
+async function createExerciseRoutine() {}
+
+Date.prototype.toDateInputValue = function () {
+	var local = new Date(this);
+	local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+	return local.toJSON().slice(0, 10);
+};
 
 //Makes call to filter as wel change the Exercise type from the dropdown
 filterDropDown.onchange = () => {
