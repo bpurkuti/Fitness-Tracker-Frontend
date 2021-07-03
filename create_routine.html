@@ -21,33 +21,27 @@
 			<li>
 				<br>            
 				<input class = "names" type="text" id="routinename" name="routinename" placeholder="Routine Name" />       
+				<label for="datescheduled">Start date:</label>
+				<input type="date" id="datescheduled" value="2021-07-01" min="2021-07-01" max="2022-07-02">
 				<br><br>	
 				<!-- Search bar/Dropdown  -->
-					<input list="searchexcercise" id="inputexcercise" placeholder="Search">
-					<datalist id="searchexcercise">
+				<!-- Ensure that value of list attribute in input is same as the id of datalist -->
+					<input list="searchexercise" id="inputexercise" placeholder="Search">
+					<datalist id="searchexercise">
 					</datalist> 
 					<!-- Sort the list for search bar/dropdown above -->
-					<select id = "filterbytype">
+					<select id = "filterdropdown">
 						<option value = "all">All</option>
 						<option value = "strength">Strength</option>
 						<option value = "cardio">Cardio</option>
 						<option value = "stretch">Stretch</option>
 					</select>
-					<!-- Should add the excercise to list then clear the search above -->
-					<button id = "addexcercisebtn" onclick="addExcerciseToList()">Add</button>
+					<!-- Should add the exercise to list then clear the search above -->
+					<button id = "addexercisebtn" onclick="addExerciseToList()">Add</button>
 				<br><br>
-				<!-- Display Added Excercises -->
-				<div id = "addedexcerciselist">Add some excercises</div>
+				<!-- Display Added Exercises -->
+				<div id = "addedexerciselist">Add some exercises</div>
 			</li>
-
-			<li>
-				<br>
-				<span class="descriptionlabel">Description:</span>
-				<br>
-				<textarea class = "description" id="description" name="description" placeholder="Excercise Description" rows="4" cols="30"></textarea>
-
-			</li>
-
 			<!-- Submit button -->
 			<li>
 				<br>

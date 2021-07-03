@@ -1,81 +1,170 @@
 const routineName = document.getElementById("routinename");
-const inputExcercise = document.getElementById("inputexcercise");
-const searchExcercise = document.getElementById("searchexcercise");
-const addExcerciseBtn = document.getElementById("addexcercisebtn");
-const addedExcerciseList = document.getElementById("addedexcerciselist");
-const filterByType = document.getElementById("filterbytype");
-const description = document.getElementById("description");
+const inputExercise = document.getElementById("inputexercise");
+const searchExercise = document.getElementById("searchexercise");
+const addExerciseBtn = document.getElementById("addexercisebtn");
+const addedExerciseList = document.getElementById("addedexerciselist");
+const filterDropDown = document.getElementById("filterdropdown");
+const dateScheduled = document.getElementById("datescheduled");
 const submitBtn = document.getElementById("submitbtn");
 const submitMsg = document.getElementById("submitmsg");
+//Initial List from fetch request
+const exerciseList = [];
+//Filtereted exerciseList based on Type
+let filteredExerciseList = [];
+//Exercises added for the current Routine
+let addedExercises = [];
+//Html to be added on the searchbar/dropdown
+let exerciseOptions;
+let serverUrl = "http://localhost:7000/";
 
-let excerciseOptions;
-const excerciseList = [
-	{ name: "Preacher Curls", type: "strength" },
-	{ name: "Treadmill", type: "cardio" },
-	{ name: "Pullups", type: "strength" },
-	{ name: "calf", type: "stretch" },
-	{ name: "Benchpress", type: "strength" },
-	{ name: "Pushups", type: "strength" },
-	{ name: "Ladder", type: "cardio" },
-	{ name: "Bike", type: "cardio" },
-	{ name: "Leg curls", type: "strength" },
-	{ name: "Leg press", type: "strength" },
-	{ name: "hamstring", type: "stretch" },
-];
-let filteredExcerciseList = [];
-let addedExcercises = [];
+//Only called once per page load
+//Calls endpoint GET ALL EXERCISES and puts them into list
+async function setExerciseList() {
+	//Set the default scheduledDate to current date
+	//Putting it outside of the function was causing issues
+	dateScheduled.value = new Date().toDateInputValue();
 
-//Theres some filterning going on here atm. Need to change it up depending on how we store excercises
-function setExcerciseList(filtertype) {
-	excerciseOptions = "";
+	const config = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ session: sessionStorage.getItem("session") }),
+	};
+	const response = await fetch(`${serverUrl}getAllExercises`, config);
+	const exercises = await response.json();
 
-	if (filtertype === "strength") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "strength"
+	for (let exercise of exercises) {
+		let r = {
+			exerciseName: exercise["exerciseName"],
+			type: exercise["type"],
+		};
+		exerciseList.push(r);
+	}
+	//Calling to set initial exercises in dropdown
+	filterExercises("all");
+}
+
+function filterExercises(filtertype) {
+	//Filters through all exercises based on type: all, strength, cardio, stretch
+	if (filtertype === "all") {
+		filteredExerciseList = exerciseList;
+	} else if (filtertype === "strength") {
+		filteredExerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "strength"
 		);
 	} else if (filtertype === "cardio") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "cardio"
+		filteredExerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "cardio"
 		);
 	} else if (filtertype === "stretch") {
-		filteredExcerciseList = excerciseList.filter(
-			(excercise) => excercise["type"] === "stretch"
+		filteredExerciseList = exerciseList.filter(
+			(exercise) => exercise["type"] === "stretch"
 		);
+	}
+	//Resets the exercises from dropdown list and pushes them with a new filtered list
+	exerciseOptions = "";
+	for (let i = 0; i < filteredExerciseList.length; i++) {
+		exerciseOptions += `<option value="${filteredExerciseList[i]["exerciseName"]}">`;
+	}
+	searchExercise.innerHTML = exerciseOptions;
+}
+
+//Function allows user to add selected exercise to their list
+//Checks validity of the exercise input by user to the original exercise list
+//Allows users to delete exercise they added if they changed their mind
+function addExerciseToList() {
+	let validExercise = exerciseList.filter(
+		(e) => e["exerciseName"] === inputExercise.value
+	);
+	if (validExercise.length > 0) {
+		addedExercises.push(inputExercise.value);
+
+		let exercises = "";
+		for (let i = 0; i < addedExercises.length; i++) {
+			exercises += `<div id="${addedExercises[i]}exercise" >${addedExercises[i]}<button id="${addedExercises[i]}btn" onclick="remove('${addedExercises[i]}')">Del</button></div>`;
+		}
+		addedExerciseList.innerHTML = exercises;
 	} else {
-		filteredExcerciseList = excerciseList;
+		alert("Choose a valid exercise");
 	}
-
-	for (let i = 0; i < filteredExcerciseList.length; i++) {
-		excerciseOptions += `<option value="${filteredExcerciseList[i]["name"]}">`;
-	}
-
-	searchExcercise.innerHTML = excerciseOptions;
+	inputExercise.value = "";
 }
 
-function createRoutine() {
-	data = {
-		routineName: routineName.value,
-		excercises: addedExcercises,
-		description: description.value,
-	};
-
-	submitMsg.innerHTML = JSON.stringify(data);
-	routineName.value = "";
-	description.value = "";
+//Removes the exercise from routine list
+//Deletes the element too
+function remove(exercise) {
+	document.getElementById(`${exercise}btn`).remove();
+	document.getElementById(`${exercise}exercise`).remove();
+	addedExercises = addedExercises.filter((item) => item !== exercise);
 }
 
-function addExcerciseToList() {
-	addedExcercises.push(inputExcercise.value);
-	inputExcercise.value = "";
-	let excercises = "";
-	for (let i = 0; i < addedExcercises.length; i++) {
-		excercises += `<li>${addedExcercises[i]}</li>`;
+//Creates Routine when we fill out Routine name and add at least 1 exercise to the list
+//If routine was successfully created, calls another function to create exercise routines
+async function createRoutine() {
+	if (addedExercises.length > 0) {
+		const date = new Date(dateScheduled.value).getTime() / 1000;
+		const data = {
+			session: sessionStorage.getItem("session"),
+			routineName: routineName.value,
+			dateScheduled: date,
+		};
+		const config = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
+
+		const response = await fetch(`${serverUrl}createRoutine`, config);
+		if (response.status == 201) {
+			const body = await response.json();
+			sessionStorage.setItem("currRoutineId", body["routineId"]);
+			createExerciseRoutine();
+		} else {
+			let error = await response.text();
+			submitMsg.innerHTML = error;
+		}
+		routineName.value = "";
+	} else {
+		submitMsg.innerHTML = "Add some exercises to your routine first.";
 	}
-	addedExcerciseList.innerHTML = excercises;
-	console.log(addedExcercises);
 }
 
-filterByType.onchange = () => {
-	setExcerciseList(filterByType.value);
+//Creating ExcerciseRoutines here
+//Only starts if routine was created first as we need routineId from it
+//Loops through each entry in addedExercises and fetches the endpoint to create individual routineExercises
+async function createExerciseRoutine() {
+	for (let exercise of addedExercises) {
+		const data = {
+			session: sessionStorage.getItem("session"),
+			exerciseName: exercise,
+			routineId: sessionStorage.getItem("currRoutineId"),
+		};
+		const config = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
+
+		const response = await fetch(`${serverUrl}createRoutineExercise`, config);
+		if (response.status == 201) {
+			submitMsg.innerHTML = "Created Routines and its exercises successfully!";
+		} else {
+			submitMsg.innerHTML = "Something went wrong";
+		}
+		//Removing exercise from list and view
+		remove(exercise);
+	}
+}
+
+//Helper function to stripdown date to this format: "7-2-2021". The frontend date selector only takes this format
+Date.prototype.toDateInputValue = function () {
+	var local = new Date(this);
+	local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+	return local.toJSON().slice(0, 10);
 };
-setExcerciseList(filterByType.value);
+
+//Makes call to filter as wel change the Exercise type from the dropdown
+filterDropDown.onchange = () => {
+	filterExercises(filterDropDown.value);
+};
+//Runs onload to setup page
+setExerciseList();
