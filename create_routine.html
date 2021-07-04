@@ -8,6 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<link rel="stylesheet" href="styles/theme.css" />
+		<link rel="stylesheet" href="styles/view_routine.css" />
+
 
 	</head>
 
@@ -28,26 +30,26 @@
 				<br><br>	
 				<!-- Search bar/Dropdown  -->
 				<!-- Ensure that value of list attribute in input is same as the id of datalist -->
-					<input list="searchexercise" id="inputexercise" placeholder="Search">
+					<input style="border:none" list="searchexercise" id="inputexercise" placeholder="Search">
 					<datalist id="searchexercise">
 					</datalist> 
 					<!-- Sort the list for search bar/dropdown above -->
-					<select id = "filterdropdown">
+					<select  style="border:none" id = "filterdropdown">
 						<option value = "all">All</option>
 						<option value = "strength">Strength</option>
 						<option value = "cardio">Cardio</option>
 						<option value = "stretch">Stretch</option>
 					</select>
 					<!-- Should add the exercise to list then clear the search above -->
-					<button id = "addexercisebtn" onclick="addExerciseToList()">Add</button>
+					<button class = "buttons" id = "addexercisebtn" onclick="addExerciseToList()">Add</button>
 				<br><br>
 				<!-- Display Added Exercises -->
-				<div id = "addedexerciselist">Add some exercises</div>
+				<div class= "addedexerciselist" id = "addedexerciselist">Add some exercises</div>
 				</div>
 			<!-- Submit button -->
 			<div>
 				<br>
-				<button id = "submitbtn" onclick="createRoutine()">
+				<button class = "buttons" id = "submitbtn" onclick="createRoutine()">
 					Create Routine
 				</button>
 			</div>

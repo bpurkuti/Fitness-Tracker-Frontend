@@ -78,7 +78,7 @@ function addExerciseToList() {
 
 		let exercises = "";
 		for (let i = 0; i < addedExercises.length; i++) {
-			exercises += `<div id="${addedExercises[i]}exercise" >${addedExercises[i]}<button id="${addedExercises[i]}btn" onclick="remove('${addedExercises[i]}')">Del</button></div>`;
+			exercises += `<div class= "addedexercise" id="${addedExercises[i]}exercise" >${addedExercises[i]}<button class= "deladdedexercisebtn" id="${addedExercises[i]}btn" onclick="remove('${addedExercises[i]}')">&#10008;</button></div>`;
 		}
 		addedExerciseList.innerHTML = exercises;
 	} else {
@@ -125,11 +125,13 @@ async function createRoutine() {
 //Only starts if routine was created first as we need routineId from it
 //Loops through each entry in addedExercises and fetches the endpoint to create individual routineExercises
 async function createExerciseRoutine() {
+	const session = sessionStorage.getItem("session");
+	const currRoutineId = sessionStorage.getItem("currRoutineId");
 	for (let exercise of addedExercises) {
 		const data = {
-			session: sessionStorage.getItem("session"),
+			session: session,
 			exerciseName: exercise,
-			routineId: sessionStorage.getItem("currRoutineId"),
+			routineId: currRoutineId,
 		};
 		const config = {
 			method: "POST",
@@ -142,12 +144,13 @@ async function createExerciseRoutine() {
 			successMsg.innerHTML = "Created Routines and its exercises successfully!";
 			errorMsg.innerHTML = "";
 		} else {
-			errorMsg.innerHTML = "Something went wrong";
+			errorMsg.innerHTML = "Exercise not created successfully!";
 			successMsg.innerHTML = "";
 		}
-		//Removing exercise from list and view
-		remove(exercise);
 	}
+	//Removing exercise from list and view
+	addedExercises = [];
+	addedExerciseList.innerHTML = "";
 }
 
 //Removes the exercise from routine list
