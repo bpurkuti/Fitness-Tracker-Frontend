@@ -25,11 +25,11 @@ async function listRoutines() {
 		routinesList.push(r);
 	}
 
-	console.log(routinesList);
 	let routineBtns = "";
 	for (let i = 0; i < routinesList.length; i++) {
-		routineBtns += `<button class = "rbtn" id ="routine${routinesList[i]["routineId"]}"  value = "${routinesList[i]["routineId"]}" onclick = "view_routine(this.value)">${routinesList[i]["routineName"]}</button>`;
+		routineBtns += `<button class="routineItem" id="routine${routinesList[i]["routineId"]}" value="${routinesList[i]["routineId"]}" onclick="view_routine(this.value)">${routinesList[i]["routineName"]}</button>`;
 	}
+	routineBtns += '<button class="newRoutine" id="addroutinebtn" onclick ="addRoutine()">&#10010 <br><br> New Routine</button>';
 	routineList.innerHTML = routineBtns;
 }
 

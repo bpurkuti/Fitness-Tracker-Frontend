@@ -7,19 +7,20 @@
 		<title>Dashboard</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="#">
-		<link rel="stylesheet" href="styles/nav.css" />
+		<link rel="stylesheet" href="styles/theme.css" />
 		<link rel="stylesheet" href="styles/dashboard.css" />
 	</head>
 
 	<body>
-		<nav class = "navbar" id = "navbar"></nav>
-		<h4 class = "pagetitle" id = "pagetitle"></h4>
+		<nav>
+			<!-- <button class="submitbtn" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button> -->
+			<button class="submitbtn" id="navlogout" onclick="logOut()"
+				style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
+		</nav>
+		<h4 class = "blocktitle" id = "pagetitle"></h4>
 
 		<!-- Routines should be displayed here as list -->
-		<div id = "routinelist"></div>
-
-		<button id = "addroutinebtn" onclick ="addRoutine()" >&#10010<br>Add Routine</button>
+		<div id="routinelist"></div>
 		<div class= "pagetitle" id = "submitmsg"></div>
 
 	</body>
