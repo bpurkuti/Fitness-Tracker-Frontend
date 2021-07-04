@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Create Exercise</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="#">
-		<link rel="stylesheet" href="styles/nav.css" />
-		<link rel="stylesheet" href="styles/create_exercise.css" />
 
-	</head>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Create Exercise</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="styles/theme.css" />
+</head>
 
-	<body>
-		<div class = "navbar" id="adminnavbar"></div>
+<body>
+	<nav>
+		<!-- <button class="submitbtn" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button> -->
+		<button class="submitbtn" id="navlogout" onclick="logOut()"
+			style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
+	</nav>
+	<br>
+	<div class="cform">
+		<h4 class="blocktitle">Create an exercise</h4>
+		<div>
+			<input class="inputfield" type="text" id="exercisename" name="exercisename" placeholder="Exercise Name" />
+			<select name="exercisetype" id="exercisetype">
+				<option value="" disabled selected hidden>Type</option>
+				<option value="strength">Strength</option>
+				<option value="cardio">Cardio</option>
+				<option value="stretch">Stretch</option>
+			</select>
+		</div>
 		<br>
-		<h4 class = "pagetitle">Create an exercise</h4>
-	
-	<div class = "cform">
-		<ul class = "cul">
-			<li>
-				<br>            
-				<input class = "names" type="text" id="exercisename" name="exercisename" placeholder="Exercise Name" />        
-				<select name="exercisetype" id="exercisetype">
-					<option value="strength">Strength</option>
-					<option value="cardio">Cardio</option>
-					<option value="stretch">Stretch</option>
-				  </select>
-			</li>
-
-			<li>
-				<br>
-				<span class="videolinklabel">Videolink:</span>
-				<input class = "videolink" type="url" id="videolink" name="videolink" placeholder="https://www.youtube.com/">
-			</li>
-
-			<li>
-				<br>
-				<span class="descriptionlabel">Description:</span>
-				<br>
-				<textarea class = "description" id="description" name="description" placeholder="..." rows="4" cols="30"></textarea>
-			</li>
-
-			<!-- Submit button -->
-			<li>
-				<br>
-				<button id = "submitbtn" onclick="createExercise()">
-					Submit
-				</button>
-			</li>
+		<div class="label">
+			Video Link
+		</div>
+		<div>
+			<input class="inputfield" type="url" id="videolink" name="videolink" style="width: 18.5em"
+				placeholder="https://www.youtube.com/">
+		</div>
+		<br>
+		<div class="label">
+			Description
+		</div>
+		<div>
+			<textarea class="description" id="description" name="description" style="resize:none" placeholder="..."
+				rows="4" cols="32"></textarea>
+		</div>
+		<div>
 			<br>
-
-		</ul>
+			<button class="submitbtn" id="submitbtn" onclick="createExercise()">Create Exercise</button>
+		</div>
+		<br>
+		<div class="successfield" id="successmsg"></div>
+		<div class="errorfield" id="errormsg"></div>
 	</div>
 
-	<h4 class = "pagetitle" id = "submitmsg"></h4>
-	
 </body>
-	<script src = "scripts/create_exercise.js"> </script>
-	<script src = "scripts/nav.js"> </script>
 
+<script src="scripts/create_exercise.js"> </script>
+<script src="scripts/nav.js"> </script>
 
 </html>

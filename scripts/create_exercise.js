@@ -3,10 +3,13 @@ const exerciseType = document.getElementById("exercisetype");
 const videoLink = document.getElementById("videolink");
 const description = document.getElementById("description");
 const submitBtn = document.getElementById("submitbtn");
-const submitMsg = document.getElementById("submitmsg");
+const errorMsg = document.getElementById("errormsg");
+const successMsg = document.getElementById("successmsg");
 let serverUrl = "http://localhost:7000/";
 
 async function createExercise() {
+	errorMsg.innerHTML = "";
+	successMsg.innerHTML = "";
 	const data = {
 		session: sessionStorage.getItem("session"),
 		exerciseName: exerciseName.value,
@@ -23,14 +26,14 @@ async function createExercise() {
 
 	const response = await fetch(`${serverUrl}createExercise`, config);
 	if (response.status == 201) {
-		submitMsg.innerHTML = `Exercise created successfully`;
+		successMsg.innerHTML = `Exercise created successfully`;
+		exerciseName.value = "";
+		videoLink.value = "";
+		description.value = "";
 	} else {
 		let error = await response.text();
-		submitMsg.innerHTML = error;
+		errorMsg.innerHTML = error;
 	}
-	exerciseName.value = "";
-	videoLink.value = "";
-	description.value = "";
 }
 
 description.addEventListener("keyup", (event) => {
