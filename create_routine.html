@@ -8,25 +8,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<link rel="stylesheet" href="styles/theme.css" />
-		<link rel="stylesheet" href="styles/create_exercise.css" />
 
 	</head>
 
 	<body>
 		<nav>
-			<button class="submitbtn" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button>
+			<button class="submitbtn" onclick="home()" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button>
 			<button class="submitbtn" id="navlogout" onclick="logOut()"
 				style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
 		</nav>
-		<h4 class = "pageTitle">Add a routine</h4>
 	
-	<div class = "cform">
-		<ul class = "cul">
-			<li>
-				<br>            
-				<input class = "names" type="text" id="routinename" name="routinename" placeholder="Routine Name" />       
-				<label for="datescheduled">Start date:</label>
-				<input type="date" id="datescheduled" value="2021-07-01" min="2021-07-01" max="2022-07-02">
+	<div class = "cform" style="width: 20em">
+		<h4 class="blocktitle">Create a routine</h4>
+		<div class = "cul">
+			<div class = "cli">
+				<input class = "names inputfield" type="text" id="routinename" name="routinename" placeholder="Routine Name"/>       
+				<!-- <label for="datescheduled">Start date:</label> -->
+				<input type="date" id="datescheduled">
 				<br><br>	
 				<!-- Search bar/Dropdown  -->
 				<!-- Ensure that value of list attribute in input is same as the id of datalist -->
@@ -45,20 +43,23 @@
 				<br><br>
 				<!-- Display Added Exercises -->
 				<div id = "addedexerciselist">Add some exercises</div>
-			</li>
+				</div>
 			<!-- Submit button -->
-			<li>
+			<div>
 				<br>
 				<button id = "submitbtn" onclick="createRoutine()">
 					Create Routine
 				</button>
-			</li>
+			</div>
 			<br>
 
-		</ul>
+		</div>
+		<div class = "successfield" id = "successmsg"></div>
+		<div class = "errorfield" id = "errormsg"></div>
+
 	</div>
 
-	<h4 class = "pagetitle" id = "submitmsg"></h4>
+
 	
 </body>
 	<script src = "scripts/create_routine.js"> </script>

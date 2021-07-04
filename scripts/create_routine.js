@@ -6,7 +6,9 @@ const addedExerciseList = document.getElementById("addedexerciselist");
 const filterDropDown = document.getElementById("filterdropdown");
 const dateScheduled = document.getElementById("datescheduled");
 const submitBtn = document.getElementById("submitbtn");
-const submitMsg = document.getElementById("submitmsg");
+const successMsg = document.getElementById("successmsg");
+const errorMsg = document.getElementById("errormsg");
+
 //Initial List from fetch request
 const exerciseList = [];
 //Filtereted exerciseList based on Type
@@ -20,10 +22,6 @@ let serverUrl = "http://localhost:7000/";
 //Only called once per page load
 //Calls endpoint GET ALL EXERCISES and puts them into list
 async function setExerciseList() {
-	//Set the default scheduledDate to current date
-	//Putting it outside of the function was causing issues
-	dateScheduled.value = new Date().toDateInputValue();
-
 	const config = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -84,17 +82,10 @@ function addExerciseToList() {
 		}
 		addedExerciseList.innerHTML = exercises;
 	} else {
-		alert("Choose a valid exercise");
+		errorMsg.innerHTML = "Choose a valid exercise";
+		successMsg.innerHTML = "";
 	}
 	inputExercise.value = "";
-}
-
-//Removes the exercise from routine list
-//Deletes the element too
-function remove(exercise) {
-	document.getElementById(`${exercise}btn`).remove();
-	document.getElementById(`${exercise}exercise`).remove();
-	addedExercises = addedExercises.filter((item) => item !== exercise);
 }
 
 //Creates Routine when we fill out Routine name and add at least 1 exercise to the list
@@ -120,11 +111,13 @@ async function createRoutine() {
 			createExerciseRoutine();
 		} else {
 			let error = await response.text();
-			submitMsg.innerHTML = error;
+			errorMsg.innerHTML = error;
+			successMsg.innerHTML = "";
 		}
 		routineName.value = "";
 	} else {
-		submitMsg.innerHTML = "Add some exercises to your routine first.";
+		errorMsg.innerHTML = "Add some exercises to your routine first.";
+		successMsg.innerHTML = "";
 	}
 }
 
@@ -146,16 +139,40 @@ async function createExerciseRoutine() {
 
 		const response = await fetch(`${serverUrl}createRoutineExercise`, config);
 		if (response.status == 201) {
-			submitMsg.innerHTML = "Created Routines and its exercises successfully!";
+			successMsg.innerHTML = "Created Routines and its exercises successfully!";
+			errorMsg.innerHTML = "";
 		} else {
-			submitMsg.innerHTML = "Something went wrong";
+			errorMsg.innerHTML = "Something went wrong";
+			successMsg.innerHTML = "";
 		}
 		//Removing exercise from list and view
 		remove(exercise);
 	}
 }
 
-//Helper function to stripdown date to this format: "7-2-2021". The frontend date selector only takes this format
+//Removes the exercise from routine list
+//Deletes the element too
+function remove(exercise) {
+	document.getElementById(`${exercise}btn`).remove();
+	document.getElementById(`${exercise}exercise`).remove();
+	addedExercises = addedExercises.filter((item) => item !== exercise);
+}
+
+function setDate() {
+	//Set the default scheduledDate to current date
+	//Setting the minimum date we can select to the current date
+	//And max to one year from now
+	const currDate = new Date().toDateInputValue();
+	dateScheduled.value = currDate;
+	dateScheduled.min = currDate;
+	dateScheduled.max = new Date(
+		new Date().getFullYear() + 1,
+		new Date().getMonth(),
+		new Date().getDate()
+	).toDateInputValue();
+}
+
+//Helper function to stripdown date to this format: "07-02-2021". The frontend date selector only takes this format
 Date.prototype.toDateInputValue = function () {
 	var local = new Date(this);
 	local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -167,4 +184,5 @@ filterDropDown.onchange = () => {
 	filterExercises(filterDropDown.value);
 };
 //Runs onload to setup page
+setDate();
 setExerciseList();
