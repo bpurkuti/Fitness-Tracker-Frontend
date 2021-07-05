@@ -1,107 +1,29 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>View/Start Exercise</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="#">
-		<link rel="stylesheet" href="styles/view_routine.css" />
-        <link rel="stylesheet" href="styles/theme.css" />
-	</head>
 
-	<body>
-		<nav>
-			<button class="submitbtn" onclick="home()" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button>
-			<button class="submitbtn" id="navlogout" onclick="logOut()"
-				style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
-		</nav>
-        <h3 class = "pagetitle">View/Start an exercise</h3>
-        <h4 id="routinename" style="color:white"></h4>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>View/Start Exercise</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/theme.css" />
+    <link rel="stylesheet" href="styles/view_routine.css" />
+</head>
 
-    <div id = "displaybefore">
-        <div class = "cform">
-            <ul class = "cul">
-                <p><b id="prevexercisename">Prev Temp Exercise</b></p>
-                <p><em id="completionstatus" style="color:rgb(139, 236, 139)">Complete</em></p>
-            </ul>
-        </div>
-    </div>
-    
+<body>
+    <nav>
+        <button class="submitbtn" onclick="gotoHome()" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button>
+        <button class="submitbtn" id="navlogout" onclick="logOut()"
+            style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
+    </nav>
+    <h3 class="blocktitle">View/Start an exercise</h3>
+    <section class="vform" id="routine">
+        <h4 class="blocktitle" id="routinename"></h4>
+    </section>
 
-	<div class = "cform">
-		<ul class = "cul">
-            <p><b id="exercisename">Current Temp Exercise</b></p>
-			
-            <li>
-				<br>
-				<span class="descriptionlabel">Description:</span>
-				<br>
-				<textarea class = "description" id="description" name="description" placeholder="Temp Description" rows="4" cols="30" disabled></textarea>
-			</li>
-
-            <li>
-                <br>
-				<span class="videolabel">Video Example:</span>
-				<br>
-                <iframe width="300" height="250" src="" ></iframe>
-            </li>
-            
-            <div id="checkexercisetype">
-                <li>
-                    <br>
-                    <span class="durationlabel">Duration:</span>
-                    <br>
-                    <input id="durationinput" placeholder="N/A" disabled>
-                </li>
-    
-                <li>
-                    <br>
-                    <span class="weightlabel">Weight:</span>
-                    <br>
-                    <input id="weightinput" placeholder="N/A" disabled>
-                </li>
-    
-                <li>
-                    <br>
-                    <span class="setslabel">Sets:</span>
-                    <br>
-                    <input id="setsinput" placeholder="N/A" disabled>
-                </li>
-    
-                <li>
-                    <br>
-                    <span class="repslabel">reps:</span>
-                    <br>
-                    <input id="repsinput" placeholder="N/A" disabled>
-                </li>
-            </div>
-            
-			
-			<br>
-
-		</ul>
-	</div>
-    <div id = "displayafter">
-        <div class = "cform">
-            <ul class = "cul">
-                <p><b id="nextexercisename">Next Temp Exercise</b></p>
-                <p><em id="completionstatus" style="color:rgb(233, 236, 27)">Upcoming</em></p>
-            </ul>
-        </div>
-    </div>
-    
-
-    <!-- Complete button -->
-			<li>
-				<br>
-				<button id = "completebtn" onclick="completeRoutine()">
-					Complete Exercise
-				</button>
-			</li>
-	
 </body>
-	<script src = "scripts/view_routine.js"> </script>
-    <script src = "scripts/nav.js"> </script>
+<script src="scripts/view_routine.js"> </script>
+<script src="scripts/nav.js"> </script>
+
 </html>

@@ -1,6 +1,6 @@
 window.onload = function(){
 
-	let serverUrl = "http://localhost:7000";
+	let serverUrl = "http://localhost:7000/";
 
 	const username = document.getElementById("username");
 	const password = document.getElementById("password");
@@ -25,7 +25,7 @@ window.onload = function(){
 		jsonObject.age = Number(age.value);
 		jsonObject.height = Number(height.value);
 		jsonObject.weight = Number(weight.value);
-        let response = await fetch(`${serverUrl}/createAccount`, {
+        let response = await fetch(`${serverUrl}createAccount`, {
             method: 'POST',
             mode: 'cors',
             headers: {

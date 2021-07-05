@@ -1,1 +1,18 @@
+.vform {
+	margin: 0 auto;
+	width: 400px;
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+	background-color: rgb(195, 195, 195);
+	text-align: center;
+}
 
+.vforminner {
+	margin: 0 auto;
+	width: 350px;
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+	background-color: rgb(233, 233, 233);
+}

@@ -1,7 +1,7 @@
 
 window.onload = function(){
 
-	let serverUrl = "http://localhost:7000";
+	let serverUrl = "http://localhost:7000/";
 
 	const username = document.getElementById("username");
 	const password = document.getElementById("password");
@@ -13,7 +13,7 @@ window.onload = function(){
         let jsonObject = {};
         jsonObject.username = String(username.value);
         jsonObject.password = String(password.value);
-        let response = await fetch(`${serverUrl}/loginAccount`, {
+        let response = await fetch(`${serverUrl}loginAccount`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -26,7 +26,7 @@ window.onload = function(){
 			sessionStorage.setItem('session', jsonReply.session);
 			let jsonObject = {};
 			jsonObject.session = jsonReply.session;
-			response = await fetch(`${serverUrl}/getAccount`, {
+			response = await fetch(`${serverUrl}getAccount`, {
 				method: 'POST',
 				mode: 'cors',
 				headers: {
