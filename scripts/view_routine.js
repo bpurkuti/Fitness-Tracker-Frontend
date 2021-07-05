@@ -40,31 +40,40 @@ async function setActiveExercise(id, routineExercise) {
 	}
 	exerciseBlock.innerHTML += `<button id="completeexercisebtn" class="submitbtn">Complete Exercise</button>`;
 	exerciseBlock.innerHTML += `<br>`;
+	exerciseBlock.innerHTML += `<br>`;
 	exerciseBlock.innerHTML += `<div id="errormsg" class="errorfield"></div>`;
 	let completeExerciseBtn = document.getElementById("completeexercisebtn");
 	completeExerciseBtn.addEventListener("click", async function () {
 		let durationInput = document.getElementById("duration");
 		let repsInput = document.getElementById("reps");
 		let weightInput = document.getElementById("weight");
-		if (durationInput !== null)
+		if (durationInput !== null) {
 			routineExercise.duration = Number(durationInput.value);
-		if (repsInput !== null)
-			routineExercise.reps = Number(repsInput.value);
-		if (weightInput !== null)
-			routineExercise.weightInput = Number(weightInput.value);
-		config = {
-			method: "PATCH",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ session: sessionStorage.getItem("session"), routineExerciseId: routineExercise.routineExerciseId, exerciseName: routineExercise.exerciseName, routineId: routineExercise.routineId, duration: routineExercise.duration, reps: routineExercise.reps, weight: routineExercise.weight })
-		};
-		const response = await fetch(`${serverUrl}updateRoutineExercise`, config);
-		if (response.status === 200) {
-			closeActiveExercise(Number(exerciseBlock.id), routineExercise);
-			if (Number(exerciseBlock.id) < routineExercises.length - 1)
-				setActiveExercise(Number(exerciseBlock.id) + 1, routineExercises[Number(exerciseBlock.id) + 1]);
 		}
-		else{
-			document.getElementById("errormsg").innerHTML = await response.text();
+		if (repsInput !== null) {
+			routineExercise.reps = Number(repsInput.value);
+		}
+		if (weightInput !== null) {
+			routineExercise.weightInput = Number(weightInput.value);
+		}
+		if (routineExercise.reps === 0) {
+			document.getElementById("errormsg").innerHTML = "You must do some reps before you can complete this exercise";
+		}
+		else {
+			config = {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ session: sessionStorage.getItem("session"), routineExerciseId: routineExercise.routineExerciseId, exerciseName: routineExercise.exerciseName, routineId: routineExercise.routineId, duration: routineExercise.duration, reps: routineExercise.reps, weight: routineExercise.weight })
+			};
+			const response = await fetch(`${serverUrl}updateRoutineExercise`, config);
+			if (response.status === 200) {
+				closeActiveExercise(Number(exerciseBlock.id), routineExercise);
+				if (Number(exerciseBlock.id) < routineExercises.length - 1)
+					setActiveExercise(Number(exerciseBlock.id) + 1, routineExercises[Number(exerciseBlock.id) + 1]);
+			}
+			else {
+				document.getElementById("errormsg").innerHTML = await response.text();
+			}
 		}
 	})
 }
@@ -77,7 +86,7 @@ async function getRoutineExercises() {
 	};
 	let response = await fetch(`${serverUrl}getRoutineById`, config);
 	let routine = await response.json();
-	routineName.innerHTML = routine.routineName;
+	routineName.innerHTML = `Start: ${routine.routineName}`;
 	response = await fetch(`${serverUrl}getAllExercisesInRoutine`, config);
 	let count = 0;
 	let newList = [];
@@ -122,8 +131,11 @@ async function getRoutineExercises() {
 		routineExercises = newList;
 		routineBlock.innerHTML += `<br>`;
 		routineBlock.innerHTML += `<button id="completeroutinebtn" class="submitbtn">Complete Routine</button>`;
+		routineBlock.innerHTML += `<br>`;
+		routineBlock.innerHTML += `<br>`;
+		routineBlock.innerHTML += `<div id="errorblock" class="errorfield"></div>`;
 		let completeRoutineBtn = document.getElementById("completeroutinebtn");
-		completeRoutineBtn.addEventListener("click", async function(){
+		completeRoutineBtn.addEventListener("click", async function () {
 			routine.dateCompleted = parseInt(Math.round(Date.now() / 1000));
 			routine.session = sessionStorage.getItem("session");
 			config = {
@@ -132,11 +144,11 @@ async function getRoutineExercises() {
 				body: JSON.stringify(routine)
 			};
 			const response = await fetch(`${serverUrl}updateRoutine`, config);
-			if(response.status === 200){
+			if (response.status === 200) {
 				window.location.assign("dashboard.html");
 			}
-			else{
-
+			else {
+				document.getElementById("errorblock").innerHTML = await response.text();
 			}
 		})
 	}
