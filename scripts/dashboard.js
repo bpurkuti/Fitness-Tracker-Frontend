@@ -21,13 +21,16 @@ async function listRoutines() {
 			username: routine["username"],
 			routineName: routine["routineName"],
 			dateScheduled: routine["dateScheduled"],
+			dateCompleted: routine["dateCompleted"]
 		};
 		routinesList.push(r);
 	}
 
 	let routineBtns = "";
 	for (let i = 0; i < routinesList.length; i++) {
-		routineBtns += `<button class="routineItem" id="routine${routinesList[i]["routineId"]}" value="${routinesList[i]["routineId"]}" onclick="view_routine(this.value)">${routinesList[i]["routineName"]}</button>`;
+		console.log(routinesList[i].dateCompleted);
+		if (routinesList[i].dateCompleted === 0)
+			routineBtns += `<button class="routineItem" id="routine${routinesList[i]["routineId"]}" value="${routinesList[i]["routineId"]}" onclick="view_routine(this.value)">${routinesList[i]["routineName"]}</button>`;
 	}
 	routineBtns += '<button class="newRoutine" id="addroutinebtn" onclick ="addRoutine()">&#10010 <br><br> New Routine</button>';
 	routineList.innerHTML = routineBtns;
