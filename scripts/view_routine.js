@@ -24,7 +24,7 @@ async function setActiveExercise(id, routineExercise) {
 	exerciseBlock.innerHTML += `<div>${exercise.description}</div>`;
 	exerciseBlock.innerHTML += `<br>`;
 	if (exercise.videoLink != 0) {
-		exerciseBlock.innerHTML += `<a href=${exercise.videoLink}>${exercise.videoLink}</a>`;
+		exerciseBlock.innerHTML += `<a href=${exercise.videoLink} target="_blank">${exercise.videoLink}</a>`;
 		exerciseBlock.innerHTML += `<br>`;
 		exerciseBlock.innerHTML += `<br>`;
 	}
@@ -32,8 +32,10 @@ async function setActiveExercise(id, routineExercise) {
 		exerciseBlock.innerHTML += `<div><input type="number" id="duration" class="inputfield" placeholder="Duration (seconds)"/><div>`;
 		exerciseBlock.innerHTML += `<br>`;
 	}
+	if(exercise.type === "strength" || exercise.type === "stretch"){
 	exerciseBlock.innerHTML += `<div><input type="number" id="reps" class="inputfield" placeholder="Reps"/><div>`;
 	exerciseBlock.innerHTML += `<br>`;
+	}
 	if (exercise.type === "strength") {
 		exerciseBlock.innerHTML += `<div><input type="number" id="weight" class="inputfield" placeholder="Weight (lb)"/><div>`;
 		exerciseBlock.innerHTML += `<br>`;
@@ -56,8 +58,18 @@ async function setActiveExercise(id, routineExercise) {
 		if (weightInput !== null) {
 			routineExercise.weightInput = Number(weightInput.value);
 		}
-		if (routineExercise.reps === 0) {
-			document.getElementById("errormsg").innerHTML = "You must do some reps before you can complete this exercise";
+		let erMsg = ""
+		if((exercise.type === "cardio" || exercise.type === "stretch") && routineExercise.duration <= 0){
+			erMsg += "You must set a valid duration time\n";
+		}
+		if((exercise.type === "strength" || exercise.type === "stretch") && routineExercise.reps <= 0){
+			erMsg += "You must set a valid number of reps\n";
+		}
+		if((exercise.type === "strength") && routineExercise.weight <= 0){
+			erMsg += "You must set a valid weight\n";
+		}
+		if(erMsg.length > 0){
+			document.getElementById("errormsg").innerHTML = erMsg;
 		}
 		else {
 			config = {
