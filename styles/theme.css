@@ -26,6 +26,10 @@ select {
 	text-indent: 0.5em;
 }
 
+#filterdropdown {
+	margin-right: 10px;
+}
+
 .description {
 	width: 18.5em;
 	resize: none;

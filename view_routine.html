@@ -8,12 +8,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="shortcut icon" href="#">
 		<link rel="stylesheet" href="styles/view_routine.css" />
-        <link rel="stylesheet" href="styles/nav.css" />
+        <link rel="stylesheet" href="styles/theme.css" />
 	</head>
 
 	<body>
-        <nav class = "navbar" id = "navbar"></nav>
-		<h3 class = "pagetitle">View/Start an exercise</h3>
+		<nav>
+			<button class="submitbtn" onclick="home()" style="margin: 0.4em; height: 2.5em; width: 7em; float: left;">Home</button>
+			<button class="submitbtn" id="navlogout" onclick="logOut()"
+				style="margin: 0.4em; height: 2.5em; width: 7em; float: right;">Logout</button>
+		</nav>
+        <h3 class = "pagetitle">View/Start an exercise</h3>
         <h4 id="routinename" style="color:white"></h4>
 
     <div id = "displaybefore">
