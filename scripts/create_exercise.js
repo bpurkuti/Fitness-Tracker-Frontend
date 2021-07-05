@@ -5,6 +5,7 @@ const description = document.getElementById("description");
 const submitBtn = document.getElementById("submitbtn");
 const errorMsg = document.getElementById("errormsg");
 const successMsg = document.getElementById("successmsg");
+const pageTitle = document.getElementById("pagetitle");
 let serverUrl = "http://localhost:7000/";
 
 async function createExercise() {
@@ -36,9 +37,21 @@ async function createExercise() {
 	}
 }
 
+async function welcomeTitle() {
+	const config = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ session: sessionStorage.getItem("session") }),
+	};
+	const response = await fetch(`${serverUrl}getAccount`, config);
+	const body = await response.json();
+	pageTitle.innerHTML = `Welcome ${body["firstName"]} ${body["lastName"]}`;
+}
+
 description.addEventListener("keyup", (event) => {
 	if (event.keyCode === 13) {
 		event.preventDefault();
 		submitBtn.click();
 	}
 });
+welcomeTitle();
