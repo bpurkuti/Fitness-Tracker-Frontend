@@ -1,33 +1,18 @@
-body {
-	background-color: black;
-}
-
-.cform {
-	/* Center the form on the page */
+.vform {
 	margin: 0 auto;
-	width: 500px;
-	/* Form outline */
+	width: 400px;
 	padding: 1em;
 	border: 1px solid #ccc;
 	border-radius: 1em;
-}
-
-.cul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	background-color: #7954b4;
-}
-
-.pageTitle {
-	color: rgb(87, 207, 57);
+	background-color: rgb(195, 195, 195);
 	text-align: center;
+}
+
+.vforminner {
 	margin: 0 auto;
-	width: 500px;
-	/* Form outline */
+	width: 350px;
 	padding: 1em;
-}
-
-h3, h4, ul, li {
-	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 1em;
+	background-color: rgb(233, 233, 233);
 }
