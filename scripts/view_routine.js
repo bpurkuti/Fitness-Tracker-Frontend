@@ -1,4 +1,4 @@
-let serverUrl = "http://localhost:7000/";
+let serverUrl = "http://3.91.177.58:7000/";
 let routineExercises = [];
 let routineBlock = document.getElementById("routine");
 let routineName = document.getElementById("routinename");

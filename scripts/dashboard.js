@@ -3,7 +3,7 @@ const pageTitle = document.getElementById("pagetitle");
 const routineList = document.getElementById("routinelist");
 let routines = "";
 let routinesList = [];
-let serverUrl = "http://localhost:7000/";
+let serverUrl = "http://3.91.177.58:7000/";
 
 async function listRoutines() {
 	const config = {
@@ -21,7 +21,7 @@ async function listRoutines() {
 			username: routine["username"],
 			routineName: routine["routineName"],
 			dateScheduled: routine["dateScheduled"],
-			dateCompleted: routine["dateCompleted"]
+			dateCompleted: routine["dateCompleted"],
 		};
 		routinesList.push(r);
 	}
@@ -32,7 +32,8 @@ async function listRoutines() {
 		if (routinesList[i].dateCompleted === 0)
 			routineBtns += `<button class="routineItem" id="routine${routinesList[i]["routineId"]}" value="${routinesList[i]["routineId"]}" onclick="view_routine(this.value)">${routinesList[i]["routineName"]}</button>`;
 	}
-	routineBtns += '<button class="newRoutine" id="addroutinebtn" onclick ="addRoutine()">&#10010 <br><br> New Routine</button>';
+	routineBtns +=
+		'<button class="newRoutine" id="addroutinebtn" onclick ="addRoutine()">&#10010 <br><br> New Routine</button>';
 	routineList.innerHTML = routineBtns;
 }
 
