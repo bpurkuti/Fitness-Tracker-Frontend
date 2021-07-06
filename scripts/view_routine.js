@@ -149,6 +149,7 @@ async function getRoutineExercises() {
 		let completeRoutineBtn = document.getElementById("completeroutinebtn");
 		completeRoutineBtn.addEventListener("click", async function () {
 			routine.dateCompleted = parseInt(Math.round(Date.now() / 1000));
+			console.log(routine.dateCompleted)
 			routine.session = sessionStorage.getItem("session");
 			config = {
 				method: "PATCH",
