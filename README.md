@@ -1,1 +1,1 @@
-# Project2Web
+# Fitness Tracker front-end layer
